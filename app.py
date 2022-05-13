@@ -1,6 +1,6 @@
 from flask import Flask
 from routes.contacts import contacts  # conexión con routes/contacts
-from flask_sqlalchemy import SQLAlchemy #para poder instanciar
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)  # para inicializar el servidor
 

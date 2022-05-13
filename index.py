@@ -1,6 +1,6 @@
 from app import app
 from utils.db import db
-from models.contact import Contact
+from models.contact import Contact, Parking
 
 with app.app_context():#crear las tablas una vez inicie la app
     db.create_all()
