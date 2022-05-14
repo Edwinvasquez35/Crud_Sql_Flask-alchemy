@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request  #Request para leer los datos que vienen desde el from en la consola
+from flask import Blueprint, render_template, request, redirect  #Request para leer los datos que vienen desde el from en la consola
 from models.contact import Contact   # instanciarlos
 from utils.db import db #para operar con la base utilizo la conexión que esta en db
 
@@ -7,7 +7,8 @@ contacts = Blueprint("contacts", __name__) # para evitar las referencias circula
 
 @contacts.route("/")
 def home():
-    return render_template('index.html') #para la conexión con el archivo html
+    contact = Contact.query.all()
+    return render_template('index.html', contact=contact) #para la conexión con el archivo html
 
 @contacts.route("/new", methods=['POST'])
 def add_contact():
@@ -15,13 +16,17 @@ def add_contact():
     email=request.form['email']
     phone=request.form['phone']
     cedula=request.form['cedula'] #recibo los datos
-    
-    new_contact = Contact(fullname, email, phone, cedula) #me permite definir un nuevo objeto que guardar y me devlverá un nuevo objeto
+    parking_number = request.form['parking_number']
+    vehicle_type = request.form['vehicle_type']
+    apartment = request.form['apartment']
+
+
+    new_contact = Contact(fullname, email, phone, cedula, parking_number, vehicle_type, apartment) #me permite definir un nuevo objeto que guardar y me devlverá un nuevo objeto
     
     db.session.add(new_contact) #para guardar los datos o instanciarlos en la base
     db.session.commit() #finaliza la conexión y guarda
 
-    return "saving a contact"
+    return redirect('/')
 
 @contacts.route("/update")
 def update():

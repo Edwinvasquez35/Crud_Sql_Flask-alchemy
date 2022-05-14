@@ -7,9 +7,15 @@ class Contact(db.Model):
     email = db.Column(db.String(100))
     phone = db.Column(db.String(20), nullable=False) 
     cedula = db.Column(db.Integer, unique=True, nullable=False)
+    parking_number = db.Column(db.Integer)
+    vehicle_type = db.Column(db.String(20))
+    apartment = db.Column(db.Integer)
 
-    def __init__(self, fullname, email, phone, cedula): # método constructor de la tabla
+    def __init__(self, fullname:str , email:str, phone:str, cedula:int, parking_number:int, vehicle_type:str, apartment:int): # método constructor de la tabla
         self.fullname = fullname
         self.email = email
         self.phone = phone
         self.cedula = cedula
+        self.parking_number = parking_number
+        self.vehicle_type = vehicle_type
+        self.apartment = apartment

@@ -3,6 +3,21 @@
     <input type="text" name="email" placeholder="Write your email" />
     <input type="text" name="phone" placeholder="Write your phone" />
     <input type="text" name="cedula" placeholder="Write your cedula" />
-
+    <input type="text" name="parking_number" placeholder="Write your parking number" />
+    <input type="text" name="vehicle_type" placeholder="Write your vehicle type" />
+    <input type="text" name="apartment" placeholder="Write your apartment" />
     <button>Save</button>
 </form>
+<div>
+    {% for contact in contact %}
+    <div>
+
+        <h5>{{contact.fullname}}</h5>
+        <p>{{contact.email}}</p>
+        <p>{{contact.phone}}</p>
+
+    </div>
+
+
+    {% endfor %}
+</div>
